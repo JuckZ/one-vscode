@@ -4,6 +4,7 @@
 import * as vscode from 'vscode'
 import { activate as openInGitHubActivate } from './open-in-github/extension'
 import { activate as whereAmIActivate } from './where-am-i/extension'
+import { activate as sortPackageJsonActivate } from './sort-package-json/extension'
 
 let currentPanel: vscode.WebviewPanel | undefined
 
@@ -65,6 +66,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   whereAmIActivate(context)
   openInGitHubActivate()
+  sortPackageJsonActivate(context)
   return
   const helloWorldDisposable = vscode.commands.registerCommand('one-vscode.helloWorld', () => {
     const msg = vscode.l10n.t('Hello {0}!', 'World')
