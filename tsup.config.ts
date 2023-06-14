@@ -10,4 +10,11 @@ export default defineConfig({
   external: [
     'vscode',
   ],
+  noExternal: [
+    'read-pkg-up',
+    'marked',
+    'ftp',
+    'resolve',
+    'sort-package-json',
+  ],
 })

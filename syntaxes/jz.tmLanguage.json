@@ -1,6 +1,6 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "",
+	"name": "jz",
 	"patterns": [
 		{
 			"include": "#keywords"
@@ -12,21 +12,21 @@
 	"repository": {
 		"keywords": {
 			"patterns": [{
-				"name": "keyword.control.",
+				"name": "keyword.control.jz",
 				"match": "\\b(if|while|for|return)\\b"
 			}]
 		},
 		"strings": {
-			"name": "string.quoted.double.",
+			"name": "string.quoted.double.jz",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape.",
+					"name": "constant.character.escape.jz",
 					"match": "\\\\."
 				}
 			]
 		}
 	},
-	"scopeName": ""
+	"scopeName": "source.jz"
 }

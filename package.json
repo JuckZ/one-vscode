@@ -21,14 +21,14 @@
     "vscode",
     "extension"
   ],
-  "homepage": "https://github.com/JuckZ/one-vscode#readme",
+  "homepage": "https://github.com/JuckZ/timesavior#readme",
   "bugs": {
-    "url": "https://github.com/JuckZ/one-vscode/issues",
+    "url": "https://github.com/JuckZ/timesavior/issues",
     "email": "juckz@foxmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JuckZ/one-vscode.git"
+    "url": "https://github.com/JuckZ/timesavior.git"
   },
   "license": "SEE LICENSE IN LICENSE",
   "author": "Juck",
@@ -54,6 +54,20 @@
     "vscode:prepublish": "nr build"
   },
   "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/js.code-snippets"
+      },
+      {
+        "language": "jz",
+        "path": "./snippets/jz.code-snippets"
+      },
+      {
+        "language": "*",
+        "path": "./snippets/all.code-snippets"
+      }
+    ],
     "commands": [
       {
         "command": "editor.sortPackageJson",
@@ -65,15 +79,15 @@
         "title": "Config the name and color"
       },
       {
-        "command": "one-vscode.helloWorld",
+        "command": "timesavior.helloWorld",
         "title": "Hello World"
       },
       {
-        "command": "one-vscode.commentLine",
+        "command": "timesavior.commentLine",
         "title": "Comment Line"
       },
       {
-        "command": "one-vscode.printDefinitionsForActiveEditor",
+        "command": "timesavior.printDefinitionsForActiveEditor",
         "title": "Print Definitions For ActiveEditor",
         "icon": {
           "light": "resources/light/refresh.svg",
@@ -159,13 +173,26 @@
     },
     "extensionDependencies": [],
     "extensionPack": [
-      "JuckZ.timesavior"
+      "antfu.icons-carbon",
+      "antfu.slidev",
+      "antfu.theme-vitesse",
+      "Bito.Bito",
+      "DavidAnson.vscode-markdownlint",
+      "dbaeumer.vscode-eslint",
+      "eamodio.gitlens",
+      "GitHub.copilot-chat",
+      "GitHub.copilot-nightly",
+      "Gruntfuggly.todo-tree",
+      "ms-vsliveshare.vsliveshare",
+      "naumovs.color-highlight",
+      "vscodevim.vim",
+      "yzhang.markdown-all-in-one"
     ],
     "grammars": [
       {
-        "language": "",
-        "scopeName": "changeme",
-        "path": "./syntaxes/.tmLanguage.json"
+        "language": "jz",
+        "scopeName": "source.jz",
+        "path": "./syntaxes/jz.tmLanguage.json"
       }
     ],
     "iconThemes": [
@@ -179,17 +206,21 @@
       {
         "key": "ctrl+.",
         "command": "workbench.action.showCommands"
+      },
+      {
+        "key": "ctrl+alt+.",
+        "command": "timesavior.helloWorld"
       }
     ],
     "languages": [
       {
-        "id": "",
+        "id": "juckz",
         "aliases": [
-          "",
-          ""
+          "jz",
+          "juck"
         ],
         "extensions": [
-          ""
+          "jz"
         ],
         "configuration": "./language-configuration.json"
       }

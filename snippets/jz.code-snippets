@@ -1,0 +1,11 @@
+{
+	// TODO not working
+	"Show Custom Language Support": {
+		"prefix": "jzshow",
+		"body": [
+			"ihave.cool('$1');",
+			"$2"
+		],
+		"description": "Show something"
+	}
+}

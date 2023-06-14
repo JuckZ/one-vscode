@@ -90,5 +90,6 @@ vscode-languageclient - 轻松地将语言服务器
 
 New Web Extension (TypeScript)
 New Notebook Renderer (TypeScript)
+New Language Pack (Localization)  暂时不研究
 
 **Enjoy!**

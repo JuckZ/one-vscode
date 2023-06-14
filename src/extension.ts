@@ -4,7 +4,12 @@
 import * as vscode from 'vscode'
 import { activate as openInGitHubActivate } from './open-in-github/extension'
 import { activate as whereAmIActivate } from './where-am-i/extension'
-import { activate as sortPackageJsonActivate } from './sort-package-json/extension'
+import { getMarkdownAsHtml } from './render/markdownRender'
+import type { FtpModel } from './ftpExplorer'
+import { FtpTreeDataProvider } from './ftpExplorer'
+import { DepNodeProvider } from './nodeDependencies'
+
+// import { activate as sortPackageJsonActivate } from './sort-package-json/extension'
 
 let currentPanel: vscode.WebviewPanel | undefined
 
@@ -59,25 +64,41 @@ async function printDefinitionsForActiveEditor() {
     console.log(definition)
 }
 
+function refreshPanel() {
+  const html = getMarkdownAsHtml()
+  currentPanel!.webview.html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Markdown Preview</title>
+</head>
+<body>
+<div id="app">
+${JSON.stringify(html)}
+</div>
+</body>
+</html>
+`
+}
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "one-vscode" is now active!')
+  console.log('Congratulations, your extension "timesavior" is now active!')
 
   whereAmIActivate(context)
   openInGitHubActivate()
-  sortPackageJsonActivate(context)
-  return
-  const helloWorldDisposable = vscode.commands.registerCommand('one-vscode.helloWorld', () => {
-    const msg = vscode.l10n.t('Hello {0}!', 'World')
+  // sortPackageJsonActivate(context)
+  const helloWorldDisposable = vscode.commands.registerCommand('timesavior.helloWorld', () => {
+    const msg = vscode.l10n.t('He1llo {0}!', 'World')
     vscode.window.showInformationMessage(msg)
   })
 
-  const commentLineDisposable = vscode.commands.registerCommand('one-vscode.commentLine', () => {
+  const commentLineDisposable = vscode.commands.registerCommand('timesavior.commentLine', () => {
     commentLine()
   })
 
-  const printDefinitionsForActiveEditorDisposable = vscode.commands.registerCommand('one-vscode.printDefinitionsForActiveEditor', () => {
+  const printDefinitionsForActiveEditorDisposable = vscode.commands.registerCommand('timesavior.printDefinitionsForActiveEditor', () => {
     printDefinitionsForActiveEditor()
   })
 
@@ -93,11 +114,36 @@ export function activate(context: vscode.ExtensionContext) {
 
   vscode.languages.registerHoverProvider('markdown', new CommentHoverProvider())
   vscode.languages.registerHoverProvider('markdown', new GitStageHoverProvider())
+  vscode.window.registerTreeDataProvider('nodeDependencies', new DepNodeProvider(undefined))
+
+  currentPanel.onDidDispose(() => {
+    currentPanel = undefined
+  }, undefined, context.subscriptions)
+
+  // 如果你想在视图中通过编程手段创建一些操作，你就不能再注册window.registerTreeDataProvider了，而是window.createTreeView，这样一来你就有权限提供你喜欢的视图操作了：
+  vscode.window.createTreeView('ftpExplorer', {
+    treeDataProvider: new FtpTreeDataProvider(undefined as unknown as FtpModel),
+  })
 
   context.subscriptions.push(helloWorldDisposable)
   context.subscriptions.push(commentLineDisposable)
   context.subscriptions.push(printDefinitionsForActiveEditorDisposable)
 }
 
+// This method is called when your extension is deactivated
 export function deactivate() {
+  // currentPanel.dispose();
+  // remove all listeners
 }
+
+vscode.workspace.onDidChangeTextDocument((event) => {
+  if (event.document === vscode.window.activeTextEditor?.document)
+    refreshPanel()
+    // currentPanel!.webview.postMessage({ html })
+})
+
+// Handle the message inside the webview
+// window.addEventListener('message', (event: Event) => {
+//   refreshPanel()
+//   // this.html = event.data.html;
+// })

@@ -1,0 +1,11 @@
+{
+	// TODO not working
+	"Show All Language Support": {
+		"prefix": "allshow",
+		"body": [
+			"allshow.cool('$1');",
+			"$2"
+		],
+		"description": "Show something"
+	}
+}
