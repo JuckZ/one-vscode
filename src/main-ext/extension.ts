@@ -2,8 +2,12 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode'
-import { activate as openInGitHubActivate } from './open-in-github/extension'
-import { activate as whereAmIActivate } from './where-am-i/extension'
+import { getMarkdownAsHtml } from '../render/markdownRender'
+import { DepNodeProvider } from '../nodeDependencies'
+import type { FtpModel } from '../ftpExplorer'
+import { FtpTreeDataProvider } from '../ftpExplorer'
+import { activate as openInGitHubActivate } from '../open-in-github/extension'
+import { activate as whereAmIActivate } from '../where-am-i/extension'
 
 let currentPanel: vscode.WebviewPanel | undefined
 
@@ -58,6 +62,23 @@ async function printDefinitionsForActiveEditor() {
     console.log(definition)
 }
 
+function refreshPanel() {
+  const html = getMarkdownAsHtml()
+  currentPanel!.webview.html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Markdown Preview</title>
+</head>
+<body>
+<div id="app">
+${JSON.stringify(html)}
+</div>
+</body>
+</html>
+`
+}
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -89,13 +110,45 @@ export function activate(context: vscode.ExtensionContext) {
     }
   )
 
+  currentPanel.onDidDispose(() => {
+    currentPanel = undefined
+  }, undefined, context.subscriptions)
+
   vscode.languages.registerHoverProvider('markdown', new CommentHoverProvider())
   vscode.languages.registerHoverProvider('markdown', new GitStageHoverProvider())
+
+  vscode.window.registerTreeDataProvider('nodeDependencies', new DepNodeProvider(undefined))
+
+  // 如果你想在视图中通过编程手段创建一些操作，你就不能再注册window.registerTreeDataProvider了，而是window.createTreeView，这样一来你就有权限提供你喜欢的视图操作了：
+  vscode.window.createTreeView('ftpExplorer', {
+    treeDataProvider: new FtpTreeDataProvider(undefined as unknown as FtpModel),
+  })
 
   context.subscriptions.push(helloWorldDisposable)
   context.subscriptions.push(commentLineDisposable)
   context.subscriptions.push(printDefinitionsForActiveEditorDisposable)
+
+  // Handle the message inside the webview
+  window.addEventListener('message', (event: Event) => {
+    refreshPanel()
+  })
 }
 
+vscode.workspace.onDidChangeTextDocument((event) => {
+  if (event.document === vscode.window.activeTextEditor?.document) {
+    const html = getMarkdownAsHtml()
+    console.warn('onDidChangeTextDocument', html)
+    refreshPanel()
+    currentPanel!.webview.postMessage({ html })
+  }
+})
+
+// window.addEventListener('message', event => {
+//   this.html = event.data.html;
+// });
+
+// This method is called when your extension is deactivated
 export function deactivate() {
+  // currentPanel.dispose();
+  // remove all listeners
 }

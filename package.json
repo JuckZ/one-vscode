@@ -272,7 +272,7 @@
     }
   },
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "dependencies": {
     "ftp": "^0.3.10",
