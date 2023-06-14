@@ -4,12 +4,11 @@
 import * as vscode from 'vscode'
 import { activate as openInGitHubActivate } from './open-in-github/extension'
 import { activate as whereAmIActivate } from './where-am-i/extension'
+import { activate as sortPackageJsonActivate } from './sort-package-json/extension'
 import { getMarkdownAsHtml } from './render/markdownRender'
 import type { FtpModel } from './ftpExplorer'
 import { FtpTreeDataProvider } from './ftpExplorer'
 import { DepNodeProvider } from './nodeDependencies'
-
-// import { activate as sortPackageJsonActivate } from './sort-package-json/extension'
 
 let currentPanel: vscode.WebviewPanel | undefined
 
@@ -66,7 +65,8 @@ async function printDefinitionsForActiveEditor() {
 
 function refreshPanel() {
   const html = getMarkdownAsHtml()
-  currentPanel!.webview.html = `<!DOCTYPE html>
+  const result = `
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -79,6 +79,8 @@ ${JSON.stringify(html)}
 </body>
 </html>
 `
+  if (currentPanel && currentPanel.webview)
+    currentPanel.webview.html = result
 }
 
 // This method is called when your extension is activated
@@ -88,7 +90,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   whereAmIActivate(context)
   openInGitHubActivate()
-  // sortPackageJsonActivate(context)
+  sortPackageJsonActivate(context)
   const helloWorldDisposable = vscode.commands.registerCommand('timesavior.helloWorld', () => {
     const msg = vscode.l10n.t('He1llo {0}!', 'World')
     vscode.window.showInformationMessage(msg)
@@ -139,10 +141,12 @@ export function deactivate() {
 vscode.workspace.onDidChangeTextDocument((event) => {
   if (event.document === vscode.window.activeTextEditor?.document)
     refreshPanel()
+    // TODO currentPanel is undefined
     // currentPanel!.webview.postMessage({ html })
 })
 
 // Handle the message inside the webview
+// TODO window is undefined
 // window.addEventListener('message', (event: Event) => {
 //   refreshPanel()
 //   // this.html = event.data.html;

@@ -85,6 +85,8 @@ vscode-languageclient - 轻松地将语言服务器
 协议上。
 
 * [ ] 拆分插件，将本插件作为Extension Packs
+* [ ] sort json objects
+* [x] sort package.json
 
 ### yo code
 
