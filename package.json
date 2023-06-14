@@ -2,7 +2,7 @@
   "name": "timesavior",
   "displayName": "timesavior",
   "publisher": "JuckZ",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "I will add more features in the future. But now, it's just a demo to help me study.",
   "categories": [
     "Other",
@@ -56,9 +56,9 @@
   "contributes": {
     "commands": [
       {
-				"command": "editor.sortPackageJson",
-				"title": "Sort package.json"
-			},
+        "command": "editor.sortPackageJson",
+        "title": "Sort package.json"
+      },
       {
         "command": "where-am-i.config",
         "category": "Where Am I",
@@ -236,9 +236,9 @@
       ],
       "commandPalette": [
         {
-					"command": "editor.sortPackageJson",
-					"when": "resourceFilename == package.json"
-				},
+          "command": "editor.sortPackageJson",
+          "when": "resourceFilename == package.json"
+        },
         {
           "command": "myExtension.commentLine",
           "when": "editorLangId == markdown"
