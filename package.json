@@ -196,15 +196,26 @@
     ],
     "localizations": [
       {
-        "languageId": "zh-Hant",
-        "languageName": "JLANG",
+        "languageId": "zh-cn",
+        "languageName": "Chinese (Simplified)",
+        "localizedLanguageName": "简体中文",
         "translations": [
           {
             "id": "vscode",
-            "path": ""
+            "path": "./i18n/zh-cn.json"
           }
-        ],
-        "localizedLanguageName": "JLANG"
+        ]
+      },
+      {
+        "languageId": "en",
+        "languageName": "English",
+        "localizedLanguageName": "English",
+        "translations": [
+          {
+            "id": "vscode",
+            "path": "./i18n/en.json"
+          }
+        ]
       }
     ],
     "markdown": "github",
