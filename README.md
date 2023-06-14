@@ -1,9 +1,12 @@
-# one-vscode  
+# TimeSavior  
 
 This is the README for All-in-One VScode Extension.
 
 ## Features
 
+It's a demo now.
+
+<!-- 
 1. **Auto-Complete**  
     Auto-complete for all languages.  
     ![Auto-Complete](images/auto-complete.gif)
@@ -33,7 +36,7 @@ This is the README for All-in-One VScode Extension.
     ![Code Beautifier](images/code-beautifier.gif)
 10. **Code Minifier**
     Code minifier for all languages.
-    ![Code Minifier](images/code-minifier.gif)
+    ![Code Minifier](images/code-minifier.gif) -->
 
 ## Extension Settings
 
