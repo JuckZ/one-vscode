@@ -309,13 +309,6 @@
     "vscode": "^1.78.0"
   },
   "icon": "images/icon.png",
-  "badges": [
-    {
-      "description": "Version",
-      "url": "https://vsmarketplacebadge.apphb.com/version-short/publisher.extensionName.svg",
-      "href": "https://marketplace.visualstudio.com/items?itemName=publisher.extensionName"
-    }
-  ],
   "galleryBanner": {
     "color": "#000000",
     "theme": "dark"
