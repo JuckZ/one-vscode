@@ -6,6 +6,8 @@ import { getMarkdownAsHtml } from './render/markdownRender'
 import { DepNodeProvider } from './nodeDependencies'
 import type { FtpModel } from './ftpExplorer'
 import { FtpTreeDataProvider } from './ftpExplorer'
+import { activate as openInGitHubActivate } from './open-in-github/extension'
+import { activate as whereAmIActivate } from './where-am-i/extension'
 
 let currentPanel: vscode.WebviewPanel | undefined
 
@@ -82,6 +84,9 @@ ${JSON.stringify(html)}
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "one-vscode" is now active!')
 
+  whereAmIActivate(context)
+  openInGitHubActivate()
+  return
   const helloWorldDisposable = vscode.commands.registerCommand('one-vscode.helloWorld', () => {
     const msg = vscode.l10n.t('Hello {0}!', 'World')
     vscode.window.showInformationMessage(msg)

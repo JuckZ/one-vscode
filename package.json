@@ -1,6 +1,7 @@
 {
   "name": "one-vscode",
   "displayName": "one-vscode",
+  "publisher": "Juck",
   "version": "0.0.1",
   "description": "",
   "categories": [
@@ -55,6 +56,11 @@
   "contributes": {
     "commands": [
       {
+        "command": "where-am-i.config",
+        "category": "Where Am I",
+        "title": "Config the name and color"
+      },
+      {
         "command": "one-vscode.helloWorld",
         "title": "Hello World"
       },
@@ -69,9 +75,84 @@
           "light": "resources/light/refresh.svg",
           "dark": "resources/dark/refresh.svg"
         }
+      },
+      {
+        "command": "nodeDependencies.refreshEntry",
+        "title": "Refresh"
+      },
+      {
+        "command": "nodeDependencies.addEntry",
+        "title": "addEntry"
+      },
+      {
+        "command": "nodeDependencies.editEntry",
+        "title": "editEntry"
+      },
+      {
+        "command": "nodeDependencies.deleteEntry",
+        "title": "deleteEntry"
+      },
+      {
+        "command": "myExtension.commentLine",
+        "title": "commentLine"
       }
     ],
-    "configuration": {},
+    "configuration": {
+      "type": "object",
+      "title": "Project Name In StatusBar extension configuration",
+      "properties": {
+        "where-am-i.colorful": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use color"
+        },
+        "where-am-i.color": {
+          "type": "string",
+          "default": "",
+          "description": "The color of status text. When not defined, a random color will be used based on the project name."
+        },
+        "where-am-i.align": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right"
+          ],
+          "default": "left",
+          "description": "Defines The alignment of the label, requires restart of vscode"
+        },
+        "where-am-i.alignPriority": {
+          "type": "number",
+          "default": 100000,
+          "description": "Defines priority of the label. Higher values mean the label should be shown more to the left, requires restart of vscode"
+        },
+        "where-am-i.textTransfrom": {
+          "type": "string",
+          "enum": [
+            "none",
+            "uppercase",
+            "lowercase",
+            "capitalize"
+          ],
+          "default": "capitalize",
+          "description": "Defines project name text style inside template"
+        },
+        "where-am-i.icon": {
+          "type": "string",
+          "default": "folder-opened",
+          "description": "Codicon id"
+        },
+        "where-am-i.template": {
+          "type": "string",
+          "default": "{icon} {project-name}",
+          "description": "Defines template of project name placeholder"
+        },
+        "where-am-i.projectSetting": {
+          "type": "object",
+          "default": {},
+          "description": "Project preference"
+        }
+      }
+    },
     "extensionDependencies": [],
     "extensionPack": [
       "publisher.extensionName"
@@ -79,7 +160,7 @@
     "grammars": [
       {
         "language": "",
-        "scopeName": "",
+        "scopeName": "changeme",
         "path": "./syntaxes/.tmLanguage.json"
       }
     ],
@@ -191,7 +272,7 @@
     }
   },
   "activationEvents": [
-    "onStartupFinished"
+    "*"
   ],
   "dependencies": {
     "ftp": "^0.3.10",
@@ -202,7 +283,7 @@
     "@antfu/ni": "^0.21.2",
     "@types/ftp": "^0.3.33",
     "@types/glob": "^8.1.0",
-    "@types/marked": "^4.3.0",
+    "@types/marked": "^5.0.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.15.11",
     "@types/vscode": "^1.78.0",
