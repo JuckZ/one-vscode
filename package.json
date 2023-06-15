@@ -1,7 +1,6 @@
 {
   "name": "timesavior",
   "displayName": "TimeSavior",
-  "publisher": "JuckZ",
   "version": "0.0.8",
   "description": "I will add more features in the future. But now, it's just a demo to help me study.",
   "categories": [
@@ -32,6 +31,7 @@
   },
   "license": "SEE LICENSE IN LICENSE",
   "author": "Juck",
+  "publisher": "JuckZ",
   "main": "./dist/extension.js",
   "files": [
     "dist",
@@ -54,20 +54,6 @@
     "vscode:prepublish": "nr build"
   },
   "contributes": {
-    "snippets": [
-      {
-        "language": "javascript",
-        "path": "./snippets/js.code-snippets"
-      },
-      {
-        "language": "jz",
-        "path": "./snippets/jz.code-snippets"
-      },
-      {
-        "language": "*",
-        "path": "./snippets/all.code-snippets"
-      }
-    ],
     "commands": [
       {
         "command": "editor.sortPackageJson",
@@ -171,24 +157,6 @@
         }
       }
     },
-    "extensionDependencies": [],
-    "extensionPack": [
-      "antfu.icons-carbon",
-      "antfu.slidev",
-      "antfu.theme-vitesse",
-      "Bito.Bito",
-      "DavidAnson.vscode-markdownlint",
-      "dbaeumer.vscode-eslint",
-      "eamodio.gitlens",
-      "GitHub.copilot-chat",
-      "GitHub.copilot-nightly",
-      "Gruntfuggly.todo-tree",
-      "ms-vsliveshare.vsliveshare",
-      "naumovs.color-highlight",
-      "vscodevim.vim",
-      "yzhang.markdown-all-in-one",
-      "richie5um2.vscode-sort-json"
-    ],
     "grammars": [
       {
         "language": "jz",
@@ -272,6 +240,20 @@
       }
     ],
     "qna": "marketplace",
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/js.code-snippets"
+      },
+      {
+        "language": "jz",
+        "path": "./snippets/jz.code-snippets"
+      },
+      {
+        "language": "*",
+        "path": "./snippets/all.code-snippets"
+      }
+    ],
     "themes": [
       {
         "label": "Monokai",
@@ -335,6 +317,24 @@
     "vitest": "^0.29.8",
     "vsce": "^2.15.0"
   },
+  "extensionPack": [
+    "Bito.Bito",
+    "DavidAnson.vscode-markdownlint",
+    "GitHub.copilot-nightly",
+    "Gruntfuggly.todo-tree",
+    "antfu.icons-carbon",
+    "antfu.slidev",
+    "antfu.theme-vitesse",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "naumovs.color-highlight",
+    "richie5um2.vscode-sort-json",
+    "vscodevim.vim",
+    "yzhang.markdown-all-in-one"
+  ],
+  "extensionDependencies": [
+    "fabiospampinato.vscode-open-in-github"
+  ],
   "packageManager": "pnpm@7.29.1",
   "engines": {
     "vscode": "^1.78.0"
