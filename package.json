@@ -355,7 +355,9 @@
     "vsce": "^2.15.0",
     "webfonts-generator": "^0.4.0"
   },
-  "extensionPack": [],
+  "extensionPack": [
+    "naumovs.color-highlight"
+  ],
   "extensionDependencies": [
     "fabiospampinato.vscode-open-in-github"
   ],
