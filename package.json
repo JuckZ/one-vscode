@@ -58,6 +58,10 @@
   "contributes": {
     "commands": [
       {
+        "command": "timesavior.createPreviewPanel",
+        "title": "Create TimeSavior Preview Panel"
+      },
+      {
         "command": "editor.sortPackageJson",
         "title": "Sort package.json"
       },
@@ -97,10 +101,6 @@
       {
         "command": "nodeDependencies.deleteEntry",
         "title": "deleteEntry"
-      },
-      {
-        "command": "myExtension.commentLine",
-        "title": "commentLine"
       }
     ],
     "configuration": {
@@ -229,7 +229,7 @@
           "when": "resourceFilename == package.json"
         },
         {
-          "command": "myExtension.commentLine",
+          "command": "timesavior.commentLine",
           "when": "editorLangId == markdown"
         }
       ]

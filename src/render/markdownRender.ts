@@ -1,13 +1,7 @@
-import * as vscode from 'vscode'
 import { marked } from 'marked'
 
-export function getMarkdownAsHtml() {
-  const editor = vscode.window.activeTextEditor
-  if (editor) {
-    const document = editor.document
-    const markdown = document.getText()
-    const html = marked(markdown)
-    return `<h1>hello juck</h1>${html}`
-  }
-  return ''
+export function getMarkdownAsHtml(markdown: string) {
+  // TODO 添加markdown样式 增强语法如obsidian的callout
+  const html = marked(markdown, { gfm: true, breaks: true, renderer: new marked.Renderer(), tokenizer: new marked.Tokenizer() })
+  return `${html}`
 }

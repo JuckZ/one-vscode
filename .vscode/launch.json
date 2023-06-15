@@ -12,6 +12,7 @@
 			"runtimeExecutable": "${execPath}",
 			"args": [
 				"--disable-extensions",
+				// TODO 如何开启指定插件
 				"--extensionDevelopmentPath=${workspaceFolder}",
 				"${workspaceFolder}/test-vault"
 			],
