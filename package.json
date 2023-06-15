@@ -40,7 +40,8 @@
     "images/icon.png"
   ],
   "scripts": {
-    "build": "nr build:theme && nr build:icon && tsup src/extension.ts --external vscode",
+    "build": "tsup src/extension.ts --external vscode",
+    "build:all": "nr build:theme && nr build:icon && tsup src/extension.ts --external vscode",
     "build:icon": "esno src/carbon-icon/build.ts",
     "build:theme": "esno src/vitesse-theme/index.ts",
     "dev": "nr build --watch",
@@ -161,9 +162,9 @@
     },
     "grammars": [
       {
-        "language": "jz",
+        "language": "juckz",
         "scopeName": "source.jz",
-        "path": "./syntaxes/jz.tmLanguage.json"
+        "path": "./syntaxes/juckz.tmLanguage.json"
       }
     ],
     "iconThemes": [
@@ -187,8 +188,8 @@
       {
         "id": "juckz",
         "aliases": [
-          "jz",
-          "juck"
+          "JuckZ",
+          "juckz"
         ],
         "extensions": [
           "jz"
@@ -248,11 +249,10 @@
         "path": "./snippets/js.code-snippets"
       },
       {
-        "language": "jz",
+        "language": "juckz",
         "path": "./snippets/jz.code-snippets"
       },
       {
-        "language": "*",
         "path": "./snippets/all.code-snippets"
       }
     ],
@@ -289,6 +289,12 @@
       }
     ],
     "views": {
+      "explorer": [
+        {
+          "id": "ftpExplorer",
+          "name": "FTP Explorer"
+        }
+      ],
       "package-explorer": [
         {
           "id": "nodeDependencies",

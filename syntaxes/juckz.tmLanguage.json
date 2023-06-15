@@ -1,6 +1,6 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "jz",
+	"name": "JuckZ",
 	"patterns": [
 		{
 			"include": "#keywords"
@@ -12,17 +12,17 @@
 	"repository": {
 		"keywords": {
 			"patterns": [{
-				"name": "keyword.control.jz",
+				"name": "keyword.control.juckz",
 				"match": "\\b(if|while|for|return)\\b"
 			}]
 		},
 		"strings": {
-			"name": "string.quoted.double.jz",
+			"name": "string.quoted.double.juckz",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape.jz",
+					"name": "constant.character.escape.juckz",
 					"match": "\\\\."
 				}
 			]
