@@ -186,7 +186,8 @@
       "ms-vsliveshare.vsliveshare",
       "naumovs.color-highlight",
       "vscodevim.vim",
-      "yzhang.markdown-all-in-one"
+      "yzhang.markdown-all-in-one",
+      "richie5um2.vscode-sort-json"
     ],
     "grammars": [
       {
