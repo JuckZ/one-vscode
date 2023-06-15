@@ -40,7 +40,7 @@
     "images/icon.png"
   ],
   "scripts": {
-    "build": "tsup src/extension.ts --external vscode",
+    "build": "esno src/vitesse-theme/index.ts && tsup src/extension.ts --external vscode",
     "dev": "nr build --watch",
     "lint": "eslint \"src/**/*.ts\"",
     "lint1": "eslint . --fix",
@@ -255,6 +255,31 @@
       }
     ],
     "themes": [
+      {
+        "label": "Vitesse Light",
+        "uiTheme": "vs",
+        "path": "./themes/vitesse-light.json"
+      },
+      {
+        "label": "Vitesse Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/vitesse-dark.json"
+      },
+      {
+        "label": "Vitesse Black",
+        "uiTheme": "vs-dark",
+        "path": "./themes/vitesse-black.json"
+      },
+      {
+        "label": "Vitesse Light Soft",
+        "uiTheme": "vs",
+        "path": "./themes/vitesse-light-soft.json"
+      },
+      {
+        "label": "Vitesse Dark Soft",
+        "uiTheme": "vs-dark",
+        "path": "./themes/vitesse-dark-soft.json"
+      },
       {
         "label": "Monokai",
         "uiTheme": "vs-dark",
