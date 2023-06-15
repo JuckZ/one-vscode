@@ -5,4 +5,5 @@ node_modules
 *.vsix
 **/temp/
 **/build/
+icons/
 # */themes/

@@ -1,10 +1,10 @@
 # TimeSavior  
 
-This is the README for All-in-One VScode Extension.
+This is the README for TimeSavior VScode Extension.
 
 ## Features
 
-It's a demo now.
+It's a demo now. It may contains a lot of other creators' code for my learning.
 
 <!-- 
 1. **Auto-Complete**  
