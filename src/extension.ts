@@ -5,6 +5,7 @@ import type { CancellationToken, ExtensionContext, HoverProvider, Location, Posi
 import { Hover, MarkdownString, StatusBarAlignment, Uri, ViewColumn, commands, l10n, languages, window, workspace } from 'vscode'
 import { activate as openInGitHubActivate } from './open-in-github/extension'
 import { activate as whereAmIActivate } from './where-am-i/extension'
+import { activate as openWorkspaceConfigFileActivate } from './edit-workspace/extension'
 import { activate as sortPackageJsonActivate } from './sort-package-json/extension'
 import { getMarkdownAsHtml } from './render/markdownRender'
 import type { FtpModel } from './ftpExplorer'
@@ -134,6 +135,7 @@ export function activate(context: ExtensionContext) {
 
   whereAmIActivate(context)
   openInGitHubActivate()
+  openWorkspaceConfigFileActivate()
   sortPackageJsonActivate(context)
   createStatusBar()
 
