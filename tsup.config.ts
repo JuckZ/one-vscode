@@ -16,5 +16,10 @@ export default defineConfig({
     'ftp',
     'resolve',
     'sort-package-json',
+    'jsonc-parser',
+    'vscode-nls',
+    'minimist',
+    'mkdirp',
+    'rimraf',
   ],
 })

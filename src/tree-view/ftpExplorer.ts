@@ -1,3 +1,4 @@
+/* eslint-disable no-void */
 import { basename, dirname } from 'node:path'
 import * as vscode from 'vscode'
 import Client from 'ftp'
@@ -25,9 +26,9 @@ export class FtpModel {
         resolve(client)
       })
 
-      client.on('error', (error) => {
-        // reject(`Error while connecting: ${error.message}`)
-        reject(error)
+      client.on('error', (error: any) => {
+        // eslint-disable-next-line prefer-promise-reject-errors
+        reject(`Error while connecting: ${error.message}`)
       })
 
       client.connect({
@@ -118,9 +119,9 @@ export class FtpTreeDataProvider implements vscode.TreeDataProvider<FtpNode>, vs
   public getTreeItem(element: FtpNode): vscode.TreeItem {
     return {
       resourceUri: element.resource,
-      collapsibleState: element.isDirectory ? vscode.TreeItemCollapsibleState.Collapsed : undefined,
+      collapsibleState: element.isDirectory ? vscode.TreeItemCollapsibleState.Collapsed : void 0,
       command: element.isDirectory
-        ? undefined
+        ? void 0
         : {
             command: 'ftpExplorer.openFtpResource',
             arguments: [element.resource],
@@ -152,6 +153,7 @@ export class FtpExplorer {
     const treeDataProvider = new FtpTreeDataProvider(ftpModel)
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('ftp', treeDataProvider))
 
+    // 如果你想在视图中通过编程手段创建一些操作，你就不能再注册window.registerTreeDataProvider了，而是window.createTreeView，这样一来你就有权限提供你喜欢的视图操作了：
     this.ftpViewer = vscode.window.createTreeView('ftpExplorer', { treeDataProvider })
 
     vscode.commands.registerCommand('ftpExplorer.refresh', () => treeDataProvider.refresh())

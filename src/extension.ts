@@ -7,10 +7,8 @@ import { activate as openInGitHubActivate } from './open-in-github/extension'
 import { activate as whereAmIActivate } from './where-am-i/extension'
 import { activate as openWorkspaceConfigFileActivate } from './edit-workspace/extension'
 import { activate as sortPackageJsonActivate } from './sort-package-json/extension'
+import { activate as treeViewActivate } from './tree-view/extension'
 import { getMarkdownAsHtml } from './render/markdownRender'
-import type { FtpModel } from './ftpExplorer'
-import { FtpTreeDataProvider } from './ftpExplorer'
-import { DepNodeProvider } from './nodeDependencies'
 
 let currentPanel: WebviewPanel | undefined
 
@@ -138,6 +136,7 @@ export function activate(context: ExtensionContext) {
   openWorkspaceConfigFileActivate()
   sortPackageJsonActivate(context)
   createStatusBar()
+  treeViewActivate(context)
 
   const helloWorldDisposable = commands.registerCommand('timesavior.helloWorld', () => {
     const msg = l10n.t('He1llo {0}!', 'World')
@@ -158,12 +157,6 @@ export function activate(context: ExtensionContext) {
 
   languages.registerHoverProvider('markdown', new CommentHoverProvider())
   languages.registerHoverProvider('markdown', new GitStageHoverProvider())
-  window.registerTreeDataProvider('nodeDependencies', new DepNodeProvider(undefined))
-
-  // 如果你想在视图中通过编程手段创建一些操作，你就不能再注册window.registerTreeDataProvider了，而是window.createTreeView，这样一来你就有权限提供你喜欢的视图操作了：
-  window.createTreeView('ftpExplorer', {
-    treeDataProvider: new FtpTreeDataProvider(undefined as unknown as FtpModel),
-  })
 
   context.subscriptions.push(helloWorldDisposable)
   context.subscriptions.push(commentLineDisposable)
